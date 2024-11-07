@@ -57,18 +57,4 @@ shardingsphere-proxy-custom-etcd-1  | [INFO ] 2024-11-07 09:00:41.226 [main] o.a
   Execute the following command,
 ```sql
 CREATE DATABASE sharding_db;
-
-REGISTER STORAGE UNIT ds_0 (
-  URL="jdbc:postgresql://postgres-for-test:5432/demo_ds_0",
-  USER="postgres",
-  PASSWORD="example"
-),ds_1 (
-  URL="jdbc:postgresql://postgres-for-test:5432/demo_ds_1",
-  USER="postgres",
-  PASSWORD="example"
-),ds_2 (
-  URL="jdbc:postgresql://postgres-for-test:5432/demo_ds_2",
-  USER="postgres",
-  PASSWORD="example"
-);
 ```
