@@ -7,6 +7,8 @@
 - Verified using `Docker Engine` under `Ubuntu 22.04.4 LTS`. Reserve port 13308 on the host.
 
 ```shell
+git clone git@github.com:linghengqian/shardingsphere-proxy-etcd-test.git
+cd ./shardingsphere-proxy-etcd-test/
 docker compose up -d
 docker compose logs --follow shardingsphere-proxy-custom-etcd
 ```
