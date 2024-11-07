@@ -1,0 +1,38 @@
+services:
+  etcd-server:
+    image: gcr.io/etcd-development/etcd:v3.5.10
+    command: [ "etcd", "--name", "etcd0", "--advertise-client-urls", "http://0.0.0.0:2379", "--listen-client-urls", "http://0.0.0.0:2379", "--data-dir", "/tmp/etcd-data" ]
+    environment:
+      ETCD_LOG_LEVEL: info
+      ETCD_LOGGER: zap
+    expose:
+      - 2379
+      - 2380
+  postgres-for-test:
+    image: postgres:17.0
+    environment:
+      POSTGRES_PASSWORD: example
+    expose:
+      - 5432
+    volumes:
+      - postgres-data-test:/var/lib/postgresql/data
+      - ./postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+  shardingsphere-proxy-custom-etcd:
+    image: linghengqian/shardingsphere-proxy-custom-etcd:latest
+    pull_policy: build
+    build:
+      context: .
+      dockerfile: Dockerfile-ss-proxy
+    depends_on:
+      etcd-server:
+        condition: service_started
+      postgres-for-test:
+        condition: service_started
+    volumes:
+      - ./shardingsphere-proxy:/opt/shardingsphere-proxy/conf
+    ports:
+      - "13308:3308"
+    environment:
+      PORT: 3308
+volumes:
+  postgres-data-test:

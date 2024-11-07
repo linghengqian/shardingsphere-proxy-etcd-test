@@ -1,0 +1,7 @@
+FROM apache/shardingsphere-proxy:5.5.1
+RUN wget https://repo1.maven.org/maven2/io/vertx/vertx-grpc/4.5.1/vertx-grpc-4.5.1.jar
+RUN wget https://repo1.maven.org/maven2/io/grpc/grpc-protobuf/1.50.2/grpc-protobuf-1.50.2.jar
+RUN wget https://repo1.maven.org/maven2/io/vertx/vertx-core/4.5.1/vertx-core-4.5.1.jar
+RUN mv ./vertx-grpc-4.5.1.jar /opt/shardingsphere-proxy/ext-lib
+RUN mv ./grpc-protobuf-1.50.2.jar /opt/shardingsphere-proxy/ext-lib
+RUN mv ./vertx-core-4.5.1.jar /opt/shardingsphere-proxy/ext-lib

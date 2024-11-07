@@ -1,0 +1,16 @@
+mode:
+  type: Cluster
+  repository:
+    type: etcd
+    props:
+      namespace: governance-etcd-data-source
+      server-lists: http://etcd-server:2379
+authority:
+  users:
+    - user: root@%
+      password: root
+  privilege:
+    type: ALL_PERMITTED
+props:
+  sql-show: false
+  proxy-frontend-database-protocol-type: PostgreSQL
